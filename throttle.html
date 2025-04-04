@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Throttling</title>
+  </head>
+  <body>
+    <!-- <input type="text" onkeyup="getSearchResult()" /> -->
+    <input type="text" onkeyup="optimizedGetSearchResults()" />
+
+    <script>
+      let counter = 1;
+      function getSearchResult() {
+        console.log(`Doing an api call : ${counter++}`);
+      }
+
+      function throttle(myFn, delay) {
+        let permission = true;
+        return function (...arg) {
+          if (permission === true) {
+            myFn.apply(this, args);
+            permission = false;
+            setTimeout(() => {
+              permission = true;
+            }, delay);
+          }
+        };
+      }
+
+      const optimizedGetSearchResults = throttle(getSearchResult, 1000);
+    </script>
+  </body>
+</html>

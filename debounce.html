@@ -1,0 +1,46 @@
+<!-- 
+  Debounce & Throttling is used to optimized the performance of web app.
+  They are used to limit the rate at which the functions are called(executed). 
+
+Debouncing in JavaScript 
+    Debouncing is a programming technique used to limit the rate at which a function is executed. It ensures that a function (like an API call or event handler) is only invoked after a specific period of inactivity.
+
+    Why Use Debouncing?
+     Prevents excessive function calls (e.g., API requests on every keystroke).
+     Optimizes performance by reducing unnecessary computations.
+     Commonly used in search bars, input fields, resize events, etc.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo Search Bar</title>
+  </head>
+  <body>
+    <!-- <input type="text" onkeyup="getSearchResult()" /> -->
+    <input
+      type="text"
+      onkeyup="optimizedGetSearchResults('Hitesh Sir', 'Ansh Sir', 'Sagar Sir', function(){})"
+    />
+
+    <script>
+      let counter = 1;
+      function getSearchResult(demo) {
+        console.log(`Doing an api call : ${counter++} ${demo}`);
+      }
+
+      function debounce(myFn, delay) {
+        let timerId;
+        return function (...args) {
+          clearTimeout(timerId);
+          timerId = setTimeout(() => {
+            myFn(args);
+          }, delay);
+        };
+      }
+
+      const optimizedGetSearchResults = debounce(getSearchResut, 1000);
+    </script>
+  </body>
+</html>
