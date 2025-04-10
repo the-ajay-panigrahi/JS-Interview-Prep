@@ -35,7 +35,7 @@ Debouncing in JavaScript
         return function (...args) {
           clearTimeout(timerId);
           timerId = setTimeout(() => {
-            myFn(args);
+            myFn.apply(this, args);
           }, delay);
         };
       }
