@@ -1,0 +1,465 @@
+<!-- 
+JavaScript is a synchronous, single-threaded language.
+This means JavaScript can execute only one command at a time, and in a specific order. It does not move to the next line until the current line finishes executing.
+
+Synchronous vs Asynchronous
+  Synchronous – Tasks complete one after another, in order.
+  Asynchronous – Tasks run in parallel, and whichever finishes first is handled first.
+
+Marathon Analogy:
+  Synchronous: Runners run one-by-one in a line. Only when one finishes, the next starts.
+  Asynchronous: All runners start together. Whoever finishes first is attended first.
+
+How do we know when we are writing Asynchronous code?
+  Whenever we use the following features, we are working with async code:
+    - setTimeout()
+    - setInterval()	
+    - Promises
+    - async/await
+    - fetch()	
+    - axios	
+    - XMLHttpRequest
+
+Synchronous code is called blocking, while asynchronous code is non-blocking.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Asyncronous Nature Of JS</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Permanent Marker", cursive;
+      }
+
+      body {
+        background-color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      h1 {
+        text-align: center;
+        padding: 10px;
+        color: #fff;
+        font-size: 45px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      Asyncronous <br />
+      Nature of <br />JavaScript
+    </h1>
+    <script>
+      //   console.log("First hoo aap!");
+      //   console.log("Second hoo aap!");
+      //   console.log("Third hoo aap!");
+
+      //   setTimeout(() => {
+      //     console.log("Haanji...");
+      //   }, 5000);
+
+      //   setTimeout(() => {
+      //     console.log("Haanji...");
+      //   }, 2500); // 1s => 1000ms
+
+      //   function saurav() {
+      //     console.log("Haanji...");
+      //   }
+
+      //   console.log("First hoo aap!");
+      //   console.log("Second hoo aap!");
+      //   console.log("Third hoo aap!");
+
+      //   setTimeout(saurav, 5000);
+
+      //   console.log("Fourth hoo aap!");
+      //   console.log("Fifth hoo aap!");
+      //   console.log("Sixth hoo aap!");
+
+      // A callback is a function passed as an argument to another function.
+
+      //   function chintuKoBulao(name) {
+      //     console.log(`${name} aa ja, khaana ready hai! 🍛`);
+      //   }
+
+      //   function maaNeKaha(callback) {
+      //     console.log("Maa: kisi ko bulao...");
+      //     callback("Chintu");
+      //   }
+
+      //   maaNeKaha(chintuKoBulao);
+
+      //   function multiply2Nums(firstNum, secondNum) {
+      //     console.log(firstNum * secondNum);
+      //   }
+
+      //   function calc(value1, value2, samajMeinNahiAaarahaHai) {
+      //     samajMeinNahiAaarahaHai(value1, value2);
+      //   }
+
+      //   calc(5, 25, multiply2Nums);
+
+      // Whenever we use callbacks, sometimes a problem can arise called "callback hell" — nested callbacks, one inside another, and so on.
+
+      // It forms a pyramid-like structure, also known as the "Pyramid of Doom".
+
+      //   setTimeout(() => {
+      //     console.log("🫗 1. Pani garam kiya");
+
+      //     setTimeout(() => {
+      //       console.log("🍝 2. Maggi daali");
+
+      //       setTimeout(() => {
+      //         console.log("🧂 3. Masala daala");
+
+      //         setTimeout(() => {
+      //           console.log("4. Namak Shamak!");
+      //           setTimeout(() => {
+      //             console.log("🍽️ 5. Maggi ready, kha lo!");
+      //           }, 1000);
+      //         }, 1000);
+      //       }, 1000);
+      //     }, 1000);
+      //   }, 1000);
+
+      // Let's say we're fetching data from a database (just a mock example below)
+      // Simulating a fake DB call
+
+      //   function dbCall(query) {
+      //     setTimeout(() => {
+      //       console.log(`Your data => ${query}`);
+      //     }, 1500); // 1s => 1000ms
+      //   }
+
+      //   dbCall(1729); // Ramanujan number
+      //   dbCall(456);
+      //   dbCall(11111);
+
+      // Mujhe sab kuch ek saath nahi chahiye, sab step by step chale.
+      // Pehle wala function chale tabhi doosra chale, fir teesra.
+      // Agar doosra nahi chala, toh teesra bhi nahi chalega!
+
+      //   function dbCall(query, aglaWalaDBCall) {
+      //     setTimeout(() => {
+      //       console.log(`Your data => ${query}`);
+      //       if (aglaWalaDBCall) {
+      //         aglaWalaDBCall();
+      //       }
+      //     }, 1500); // 1s => 1000ms
+      //   }
+
+      //   callback hell
+      //   dbCall(1, () => {
+      //     console.log("gehth");
+
+      //     dbCall(2, () => {
+      //       dbCall(3, () => {
+      //         dbCall(4, () => {
+      //           dbCall(5, () => {
+      //             dbCall(6, () => {
+      //               dbCall(7);
+      //             });
+      //           });
+      //         });
+      //       });
+      //     });
+      //   });
+
+      /*
+            To solve callback hell, we use Promises
+            Callback hell ka solution mila — Promises! 😎
+
+            Promise is for eventual completion of task.
+            Promise is an object in JS.
+
+            A Promise has three states: pending, fulfilled, and rejected
+
+            */
+      //   resolve and reject are callback => provided by JS.
+      // let wada = new Promise((resolve, reject) => {
+      //   console.log("Main hoon ek wada");
+      //   resolve("Success full");
+      //   // reject("kuch toh issue!!")
+      // });
+
+      // console.log(wada);
+      // console.log(wada);
+
+      // In the real world, we don’t usually write our own Promises, we mostly consume them.
+
+      // function dbCall(query, aglaWalaDBCall) {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       console.log(`Your data => ${query}`);
+      //       resolve("Hoogya");
+
+      //       // reject("dangerous");
+      //       if (aglaWalaDBCall) {
+      //         aglaWalaDBCall();
+      //       }
+      //     }, 2000);
+      //   });
+      // }
+
+      // let returnedPromise = dbCall(1);
+
+      // console.log(returnedPromise);
+
+      // function apiCall() {
+      //   return new Promise((resolve, reject) => {
+      //     console.log("Me Ek Waada Hoon!!");
+      //     // reject(123);
+      //     resolve();
+      //   });
+      // }
+
+      // let response = apiCall();
+      // response
+      //   .then((error) => {
+      //     console.log("Done => ", error);
+      //   })
+      //   .catch((err) => {
+      //     console.log("Error => ", err);
+      //   })
+      //   .finally(() => {
+      //     console.log("Main toh chalunga jee!! => ");
+      //   });
+
+      // function firstAsynchronousFunction() {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       console.log("Pehla data lelo");
+      //       resolve("pehla success");
+      //     }, 3000);
+      //   });
+      // }
+
+      // function secondAsynchronousFunction() {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       console.log("Dooshra data lelo");
+      //       resolve("Dooshra success");
+      //     }, 3000);
+      //   });
+      // }
+
+      // let returnedPromise1 = firstAsynchronousFunction();
+
+      // returnedPromise1.then((res) => {
+      //   console.log(res);
+      // });
+
+      // let returnedPromise2 = secondAsynchronousFunction();
+
+      // returnedPromise2.then((res) => {
+      //   console.log(res);
+      // });
+
+      //  function firstAsynchronousFunction() {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       console.log("Pehla data lelo");
+      //       resolve("pehla success");
+      //     }, 3000);
+      //   });
+      // }
+
+      // function secondAsynchronousFunction() {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       console.log("Dooshra data lelo");
+      //       resolve("Dooshra success");
+      //     }, 3000);
+      //   });
+      // }
+
+      // let returnedPromise1 = firstAsynchronousFunction();
+
+      // returnedPromise1.then((res) => {
+      //   console.log(res);
+      //   let returnedPromise2 = secondAsynchronousFunction();
+      //   returnedPromise2.then((res) => {
+      //     console.log(res);
+      //   });
+      // });
+
+      //   Above :
+      // Promise chaining is the process of executing multiple .then() calls one after another, where each .then() waits for the previous one to complete.
+      // Promise chaining matlab ek ke baad ek kaam karna using .then(), jahan agla step pehla complete hone ke baad hi chalega.
+
+      function dbCall(query) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            console.log(`Your data => ${query}`);
+            resolve("111");
+          }, 1000);
+        });
+      }
+
+      // dbCall(1).then((res) => {
+      //   console.log(res);
+      //   dbCall(2).then((res) => {
+      //     console.log(res);
+      //     dbCall(3).then((res) => {
+      //       console.log(res);
+      //       dbCall(4).then((res) => {
+      //         console.log(res);
+      //         dbCall(5).then((res) => {
+      //           console.log(res);
+      //           dbCall(6).then((res) => {
+      //             console.log(res);
+      //             dbCall(7).then((res) => {
+      //               console.log(res);
+      //             });
+      //           });
+      //         });
+      //       });
+      //     });
+      //   });
+      // });
+
+      // dbCall(1)
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(2);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(3);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(4);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(5);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(6);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(7);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //   });
+
+      // dbCall(1, () => {
+      //   dbCall(2, () => {
+      //     dbCall(3, () => {
+      //       dbCall(4, () => {
+      //         dbCall(5, () => {
+      //           dbCall(6, () => {
+      //             dbCall(7);
+      //           });
+      //         });
+      //       });
+      //     });
+      //   });
+      // });
+
+      // Async-await
+      // It is a way to write asynchronous code that looks and behaves like synchronous code, making it easier to read and manage.
+      // It always returns a promise
+      // await pauses the execution of its surrounding async function until the Promise is settled
+
+      // function api() {
+      //   return new Promise((resolve, reject) => {
+      //     setTimeout(() => {
+      //       console.log("Imp data");
+      //       resolve(200);
+      //     }, 2000);
+      //   });
+      // }
+
+      // async function getData() {
+      //   try {
+      //     await api();
+      //     await api();
+      //   } catch (error) {
+      //     console.log(error);
+      //   }
+      // }
+
+      // console.log(getData());
+
+      // last comparison
+
+        function dbCall(query) {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              console.log(`Your data => ${query}`);
+              resolve("111");
+            }, 1000);
+          });
+        }
+      async function getData() {
+        await dbCall(1);
+        await dbCall(2);
+        await dbCall(3);
+        await dbCall(4);
+        await dbCall(5);
+        await dbCall(6);
+        await dbCall(7);
+      }
+
+      
+
+      // dbCall(1)
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(2);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(3);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(4);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(5);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(6);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //     return dbCall(7);
+      //   })
+      //   .then((res) => {
+      //     console.log(res);
+      //   });
+
+      // dbCall(1, () => {
+      //   dbCall(2, () => {
+      //     dbCall(3, () => {
+      //       dbCall(4, () => {
+      //         dbCall(5, () => {
+      //           dbCall(6, () => {
+      //             dbCall(7);
+      //           });
+      //         });
+      //       });
+      //     });
+      //   });
+      // });
+    </script>
+  </body>
+</html>
