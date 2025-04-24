@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Internals</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 10px;
+            font-family: "Permanent Marker", cursive;
+            font-size: 45px;
+        }
+
+        ul li {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JS INTERNALS</h1>
+    <ul>
+        <li><span>Global Execution Context</span> <input type="checkbox" checked></li>
+        <li><span>Hoisting</span> <input type="checkbox" checked></li>
+        <li><span>Temporal Dead Zone</span> <input type="checkbox" checked></li>
+        <li><span>Call Stack</span> <input type="checkbox"></li>
+        <li><span>Web APIs</span> <input type="checkbox"></li>
+        <li><span>Callback/Task Queue</span> <input type="checkbox"></li>
+        <li><span>Event loop</span> <input type="checkbox"></li>
+        <li><span>Micro Task Queue</span> <input type="checkbox"></li>
+        <li><span>Starvation</span> <input type="checkbox"></li>
+    </ul>
+
+    <script src="./behind-the-scenes-of-js.js">
+        /*
+           Everything in JavaScript happens inside an Execution Context.
+
+         JavaScript is a synchronous single-threaded language.
+        */
+    </script>
+</body>
+
+</html>

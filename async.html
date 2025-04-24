@@ -416,50 +416,50 @@ Synchronous code is called blocking, while asynchronous code is non-blocking.
         await dbCall(7);
       }
 
-      
 
-      // dbCall(1)
-      //   .then((res) => {
-      //     console.log(res);
-      //     return dbCall(2);
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     return dbCall(3);
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     return dbCall(4);
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     return dbCall(5);
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     return dbCall(6);
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //     return dbCall(7);
-      //   })
-      //   .then((res) => {
-      //     console.log(res);
-      //   });
 
-      // dbCall(1, () => {
-      //   dbCall(2, () => {
-      //     dbCall(3, () => {
-      //       dbCall(4, () => {
-      //         dbCall(5, () => {
-      //           dbCall(6, () => {
-      //             dbCall(7);
-      //           });
-      //         });
-      //       });
-      //     });
-      //   });
-      // });
+      dbCall(1)
+        .then((res) => {
+          console.log(res);
+          return dbCall(2);
+        })
+        .then((res) => {
+          console.log(res);
+          return dbCall(3);
+        })
+        .then((res) => {
+          console.log(res);
+          return dbCall(4);
+        })
+        .then((res) => {
+          console.log(res);
+          return dbCall(5);
+        })
+        .then((res) => {
+          console.log(res);
+          return dbCall(6);
+        })
+        .then((res) => {
+          console.log(res);
+          return dbCall(7);
+        })
+        .then((res) => {
+          console.log(res);
+        });
+
+      dbCall(1, () => {
+        dbCall(2, () => {
+          dbCall(3, () => {
+            dbCall(4, () => {
+              dbCall(5, () => {
+                dbCall(6, () => {
+                  dbCall(7);
+                });
+              });S
+            });
+          });
+        });
+      });
     </script>
   </body>
 </html>
